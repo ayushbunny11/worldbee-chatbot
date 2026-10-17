@@ -1,0 +1,6 @@
+fastapi==0.143.3
+langchain==1.4.6
+langchain-google-genai==4.4.2
+langchain-openai==1.7.2
+langchain-tavily==0.2.18
+uvicorn[standard]==0.54.0
