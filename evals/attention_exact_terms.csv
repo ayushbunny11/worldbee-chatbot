@@ -1,0 +1,15 @@
+id,question,ground_truth_answer,source_page,question_type
+101,"Which model scores 26.03 BLEU on EN-DE in Table 2?",MoE,8,exact
+102,"What is the EN-FR BLEU of the ConvS2S Ensemble?",41.29,8,exact
+103,"What dropout rate did the English-to-French big model use instead of 0.3?",Pdrop = 0.1,8,exact
+104,"What does row (E) of Table 3 change?",Learned positional embeddings instead of sinusoids,9,exact
+105,"Which Table 3 variant has 168 million parameters?","Row (C) with d_model 1024, d_k = d_v = 128",9,exact
+106,"What beam size and alpha were used for constituency parsing?","Beam size 21 and alpha = 0.3",10,exact
+107,"What WSJ 23 F1 does Dyer et al. (2016) generative reach?",93.3,10,exact
+108,"What F1 did Vinyals & Kaiser get with WSJ only training?",88.3,10,exact
+109,"What is the maximum path length if self-attention is restricted to a neighborhood of size r?",O(n/r),7,exact
+110,"Who wrote Xception: deep learning with depthwise separable convolutions?",Francois Chollet,11,exact
+111,"What did Kaiser and Sutskever publish about Neural GPUs?",Neural GPUs learn algorithms (ICLR 2016),11,exact
+112,"Which reference is the Penn Treebank paper by Marcus?",[25],12,exact
+113,"Which paper is reference [33]?",Dropout: a simple way to prevent neural networks from overfitting (Srivastava et al.),12,exact
+114,"Which work did Sennrich, Haddow and Birch write on rare words?",Neural machine translation of rare words with subword units,12,exact

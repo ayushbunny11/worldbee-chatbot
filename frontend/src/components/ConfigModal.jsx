@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { fetchDefaultPrompt } from "../api.js";
 import { CloseIcon, ExternalIcon, EyeIcon, EyeOffIcon } from "./Icons.jsx";
 
 // Used only if the backend's /api/providers can't be reached.
@@ -33,17 +32,6 @@ export default function ConfigModal({ config, providers, onSave, onClose }) {
   // Edit a draft copy; nothing changes until the user clicks Save.
   const [draft, setDraft] = useState(config);
   const current = options[draft.provider];
-  const [defaultPrompt, setDefaultPrompt] = useState(null);
-  const [promptError, setPromptError] = useState(false);
-  // Open the optional section right away if the user already customised something.
-  const [showAdvanced, setShowAdvanced] = useState(Boolean(config.systemPrompt || config.personalInfo));
-
-  // Load the built-in prompt once, so it can be shown as a starting point.
-  useEffect(() => {
-    fetchDefaultPrompt().then(setDefaultPrompt).catch(() => setPromptError(true));
-  }, []);
-
-  const usingDefault = !draft.systemPrompt.trim();
 
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -63,7 +51,8 @@ export default function ConfigModal({ config, providers, onSave, onClose }) {
   const setApiKey = (value) =>
     setDraft((d) => ({ ...d, apiKeys: { ...d.apiKeys, [d.provider]: value.trim() } }));
 
-  const canSave = draft.model.trim() && draft.apiKeys[draft.provider] && draft.tavilyApiKey;
+  // Tavily is optional: without it the agent just can't search the web.
+  const canSave = draft.model.trim() && draft.apiKeys[draft.provider];
 
   return (
     <div className="overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
@@ -148,7 +137,9 @@ export default function ConfigModal({ config, providers, onSave, onClose }) {
 
           <div className="field">
             <div className="label-row">
-              <label htmlFor="tavily-key">Tavily API key (web search)</label>
+              <label htmlFor="tavily-key">
+                Tavily API key (web search) <em className="optional">optional</em>
+              </label>
               <a href="https://app.tavily.com" target="_blank" rel="noopener noreferrer">
                 Get a key <ExternalIcon size={12} />
               </a>
@@ -159,69 +150,7 @@ export default function ConfigModal({ config, providers, onSave, onClose }) {
               onChange={(v) => setDraft((d) => ({ ...d, tavilyApiKey: v.trim() }))}
               placeholder="tvly-..."
             />
-          </div>
-
-          <div className="advanced">
-            <button type="button" className="advanced-toggle" onClick={() => setShowAdvanced((v) => !v)} aria-expanded={showAdvanced}>
-              <span className={`caret ${showAdvanced ? "open" : ""}`} />
-              Personalisation <em>(optional)</em>
-              {(draft.systemPrompt.trim() || draft.personalInfo.trim()) && <span className="badge">customised</span>}
-            </button>
-
-            {showAdvanced && (
-              <div className="advanced-body">
-                <div className="field">
-                  <label htmlFor="personal-info">About you</label>
-                  <textarea
-                    id="personal-info"
-                    rows={3}
-                    maxLength={2000}
-                    value={draft.personalInfo}
-                    onChange={(e) => setDraft((d) => ({ ...d, personalInfo: e.target.value }))}
-                    placeholder="e.g. I'm Sam, a nurse in Leeds. I like short answers with examples."
-                  />
-                  <p className="field-hint">The assistant uses this to personalise its answers. Leave blank to skip.</p>
-                </div>
-
-                <div className="field">
-                  <div className="label-row">
-                    <label htmlFor="system-prompt">System prompt</label>
-                    <span className={`prompt-state ${usingDefault ? "" : "custom"}`}>
-                      {usingDefault ? "Using default prompt" : "Custom prompt"}
-                    </span>
-                  </div>
-                  <textarea
-                    id="system-prompt"
-                    className="mono"
-                    rows={8}
-                    maxLength={8000}
-                    value={draft.systemPrompt}
-                    onChange={(e) => setDraft((d) => ({ ...d, systemPrompt: e.target.value }))}
-                    placeholder="Blank = use WorldBee's default prompt. Write your own to replace it."
-                  />
-                  <div className="prompt-actions">
-                    <button
-                      type="button"
-                      className="link-btn"
-                      disabled={!defaultPrompt}
-                      onClick={() => setDraft((d) => ({ ...d, systemPrompt: defaultPrompt }))}
-                    >
-                      Load the default prompt to edit it
-                    </button>
-                    {!usingDefault && (
-                      <button type="button" className="link-btn" onClick={() => setDraft((d) => ({ ...d, systemPrompt: "" }))}>
-                        Reset to default
-                      </button>
-                    )}
-                  </div>
-                  <p className="field-hint">
-                    {promptError && "Couldn't load the default prompt from the backend. "}
-                    Your prompt replaces the default. The assistant keeps its web search tool. Use{" "}
-                    <code>{"{today}"}</code> to insert today's date.
-                  </p>
-                </div>
-              </div>
-            )}
+            <p className="field-hint">Without it the assistant can still chat and read your files, but can't search the web.</p>
           </div>
 
           <div className="modal-foot">

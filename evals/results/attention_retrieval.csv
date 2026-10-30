@@ -1,0 +1,57 @@
+id,type,question,truth_page,vector_pages,vector_rank,keyword_pages,keyword_rank,hybrid_pages,hybrid_rank
+1,factual,What model architecture do the authors propose?,1,8 8 10 1 3 10,4,15 14 2 1 1 11,4,1 1 8 10 3 2,1
+2,numeric,What BLEU score does the Transformer achieve on the WMT 2014 English-to-German task?,1,8 8 8 9 1 8,5,8 1 8 10 8 7,2,8 8 8 1 10 7,4
+3,numeric,What BLEU score does the big Transformer achieve on the WMT 2014 English-to-French task according to the abstract and Table 2?,1,8 8 8 1 7 9,4,8 8 1 10 8 7,3,8 8 1 8 7 10,3
+4,numeric,How long was the big model trained and on what hardware?,7,7 8 7 8 8 2,1,7 7 14 15 1 8,1,7 7 8 8 1 8,1
+5,factual,At which conference was the paper presented?,1,12 1 13 12 9 12,2,1 7 1 12 11 11,1,1 12 11 12 1 11,1
+6,factual,Who proposed replacing RNNs with self-attention and started the effort to evaluate the idea?,1,1 2 6 13 4 10,1,1 1 10 11 9 2,1,1 10 1 6 2 11,1
+7,numeric,How many identical layers are in the encoder stack?,3,3 3 6 6 5 5,1,6 3 9 3 15 6,2,3 3 6 6 6 5,1
+8,numeric,What is the value of d_model in the Transformer?,3,3 9 8 8 8 2,1,15 14 9 5 4 5,,9 3 5 8 6 5,2
+9,factual,What sub-layers does each encoder layer have?,3,3 3 5 5 6 6,1,3 3 15 14 5 8,1,3 3 5 5 6 8,1
+10,factual,What extra sub-layer does the decoder add compared to the encoder?,3,3 5 3 5 6 5,1,3 3 15 14 6 8,1,3 3 5 5 6 6,1
+11,reasoning,Why is masking applied to the decoder self-attention?,3,5 3 6 2 5 1,2,5 3 6 8 4 1,2,3 5 6 5 2 4,1
+12,factual,What is the formula for scaled dot-product attention?,4,4 4 4 9 5 5,1,4 4 4 1 5 14,1,4 4 4 5 1 9,1
+13,reasoning,Why are the dot products scaled by 1/sqrt(d_k)?,4,4 4 4 6 9 9,1,4 4 4 5 1 9,1,4 4 4 5 1 9,1
+14,numeric,How many attention heads does the base model use and what are d_k and d_v?,5,5 9 4 1 6 4,1,15 5 4 14 4 9,2,5 4 9 4 7 4,1
+15,factual,What are the three ways multi-head attention is used in the Transformer?,5,5 1 3 2 4 3,1,5 14 15 4 5 2,1,5 4 2 3 1 3,1
+16,numeric,What is the inner-layer dimensionality d_ff of the feed-forward network?,5,5 5 6 6 3 6,1,5 5 15 14 3 7,1,5 5 3 6 7 4,1
+17,factual,What activation function does the position-wise feed-forward network use?,5,5 6 6 2 1 1,1,5 3 7 4 15 14,1,5 6 4 3 2 6,1
+18,factual,What kind of positional encoding does the paper use?,6,6 9 9 10 8 10,1,15 14 1 7 12 5,,6 9 3 12 5 2,1
+19,reasoning,Why did the authors choose sinusoidal positional encodings over learned ones?,6,6 6 1 9 9 9,1,6 9 6 4 5 9,1,6 6 9 9 5 9,1
+20,table,"According to Table 1, what are the per-layer complexity and number of sequential operations for self-attention?",6,6 6 7 6 5 1,1,6 6 6 9 15 2,1,6 6 6 7 2 4,1
+21,table,"According to Table 1, what is the maximum path length for a recurrent layer?",6,6 6 6 7 9 2,1,6 6 7 6 8 10,1,6 6 6 7 2 2,1
+22,reasoning,Under what condition is a self-attention layer faster than a recurrent layer?,6,6 7 6 6 5 2,1,10 6 15 14 2 6,2,6 6 7 10 6 2,1
+23,numeric,How large is the WMT 2014 English-German training dataset and what vocabulary is used?,7,7 9 8 8 1 10,1,7 1 7 10 8 9,1,7 1 9 8 10 8,1
+24,numeric,What dataset and vocabulary were used for English-to-French?,7,7 9 8 10 1 8,1,7 8 9 14 15 9,1,7 9 8 1 10 9,1
+25,numeric,How long did training take for the base models?,7,7 7 8 8 8 1,1,7 11 6 6 1 7,1,7 11 7 1 6 8,1
+26,numeric,What optimizer and hyperparameters were used?,7,1 7 8 4 4 2,2,7 8 7 14 15 11,1,7 7 8 4 8 11,1
+27,numeric,What label smoothing value was used and what is its effect?,8,8 9 9 13 9 8,1,8 14 15 4 4 7,1,8 4 4 14 15 9,1
+28,table,What are the BLEU score and training cost of the Transformer base model on English-to-German in Table 2?,8,8 8 8 8 9 1,1,8 1 8 8 8 9,1,8 8 8 1 8 9,1
+29,table,What is the English-to-German training cost in FLOPs of the Transformer big model?,8,8 8 8 8 1 7,1,8 8 8 1 8 7,1,8 8 8 8 1 7,1
+30,multi-hop,"How much less training compute does Transformer (big) use for English-to-German than the ConvS2S Ensemble, and how do their BLEU scores compare?",8,8 8 8 1 8 10,1,8 8 8 1 10 9,1,8 8 8 1 10 8,1
+31,numeric,How were checkpoints averaged for the base and big models?,8,9 8 8 7 7 9,2,8 9 7 7 8 2,1,9 8 7 7 8 8,2
+32,numeric,What beam search settings were used for translation?,8,9 9 8 8 10 7,3,8 9 9 9 14 15,1,9 8 9 7 9 10,2
+33,numeric,How much worse is single-head attention than the best setting in Table 3?,9,9 5 14 4 15 4,1,9 10 8 4 2 5,1,9 5 4 2 4 13,1
+34,table,"In Table 3, what are the parameter count, dev perplexity, and dev BLEU of the base model?",9,9 8 9 8 8 8,1,9 8 14 15 8 9,1,9 8 8 9 8 9,1
+35,table,"In Table 3, what are the parameter count and dev BLEU of the big model?",9,8 8 9 8 8 9,3,9 8 14 15 8 9,1,8 9 8 9 8 1,2
+36,reasoning,"What happens when the attention key size d_k is reduced, according to Table 3 rows (B)?",9,9 4 4 5 3 13,1,9 9 4 4 6 5,1,9 4 4 5 9 4,1
+37,factual,What model configuration was used for English constituency parsing?,9,9 10 1 12 9 7,1,9 1 14 15 10 12,1,9 1 10 12 7 8,1
+38,table,What WSJ 23 F1 scores does the 4-layer Transformer achieve in Table 4?,10,10 9 8 10 9 8,1,10 8 8 10 14 8,1,10 8 10 8 9 9,1
+39,factual,Does the Transformer outperform the BerkeleyParser when trained only on the 40K-sentence WSJ set?,10,10 10 9 9 1 8,1,10 9 10 9 8 7,1,10 10 9 9 8 8,1
+40,factual,Where is the code used to train and evaluate the models available?,10,7 8 8 7 8 1,,10 4 1 8 9 5,1,8 10 1 7 7 8,2
+41,factual,"Which encoder layer is used in the attention visualizations, and what phrase does the long-distance dependency example complete?",13,6 3 13 7 5 5,3,13 15 2 2 2 6,1,13 6 3 6 1 2,1
+42,factual,What linguistic phenomenon do the two heads in Figure 4 appear to be involved in?,14,9 13 2 5 1 14,6,14 15 7 7 3 1,1,14 13 5 12 7 6,1
+101,exact,Which model scores 26.03 BLEU on EN-DE in Table 2?,8,8 8 8 9 8 1,1,8 8 8 1 9 9,1,8 8 8 9 1 9,1
+102,exact,What is the EN-FR BLEU of the ConvS2S Ensemble?,8,8 8 6 4 8 9,1,8 8 1 15 14 2,1,8 8 8 10 1 9,1
+103,exact,What dropout rate did the English-to-French big model use instead of 0.3?,8,8 8 8 8 9 7,1,8 8 8 7 7 9,1,8 8 8 9 7 7,1
+104,exact,What does row (E) of Table 3 change?,9,9 13 9 14 6 15,1,9 6 6 15 14 8,1,9 6 14 9 15 6,1
+105,exact,Which Table 3 variant has 168 million parameters?,9,9 9 8 7 10 6,1,1 5 7 9 2 9,4,9 7 1 9 8 9,1
+106,exact,What beam size and alpha were used for constituency parsing?,10,10 9 12 9 9 7,1,8 10 9 14 15 9,2,10 9 9 9 12 7,1
+107,exact,What WSJ 23 F1 does Dyer et al. (2016) generative reach?,10,9 10 12 10 1 11,2,10 12 11 14 15 9,1,10 12 9 10 11 11,1
+108,exact,What F1 did Vinyals & Kaiser get with WSJ only training?,10,9 10 7 10 8 9,2,10 10 9 9 12 11,1,10 9 10 9 11 7,1
+109,exact,What is the maximum path length if self-attention is restricted to a neighborhood of size r?,7,6 7 6 6 4 4,2,6 7 6 8 6 15,2,6 7 6 6 9 5,2
+110,exact,Who wrote Xception: deep learning with depthwise separable convolutions?,11,11 5 1 7 11 6,1,11 7 5 8 11 12,1,11 7 11 5 1 5,1
+111,exact,What did Kaiser and Sutskever publish about Neural GPUs?,11,1 8 2 11 12 8,4,11 12 11 7 14 15,1,11 2 11 8 12 7,1
+112,exact,Which reference is the Penn Treebank paper by Marcus?,12,12 9 9 11 1 12,1,12 9 7 10 5 10,1,12 10 12 9 7 8,1
+113,exact,Which paper is reference [33]?,12,12 9 12 13 10 12,1,7 10 10 12 1 12,4,10 12 9 12 9 8,2
+114,exact,"Which work did Sennrich, Haddow and Birch write on rare words?",12,12 12 9 9 9 10,1,12 7 7 2 14 1,1,12 7 9 1 1 2,1

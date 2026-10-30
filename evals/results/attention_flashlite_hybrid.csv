@@ -1,0 +1,103 @@
+"model","id","type","question","ground_truth","truth_page","answer","retrieved_pages","page_hit","searched_files","error","seconds","verdict","grader_notes"
+"gemini-3.5-flash-lite (hybrid)","1","factual","What model architecture do the authors propose?","The Transformer, a network architecture based solely on attention mechanisms that dispenses with recurrence and convolutions entirely.","1","The authors propose the Transformer, a novel sequence transduction model architecture based entirely on attention mechanisms, dispensing with recurrence and convolutions entirely (Attention.pdf, p. 1).
+
+Key features of the architecture include:
+
+Encoder-Decoder Structure: It uses stacked self-attention and point-wise, fully connected layers for both the encoder and decoder (Attention.pdf, p. 3).
+Encoder: Composed of a stack of 6 identical layers, each featuring a multi-head self-attention mechanism followed by a position-wise fully connected feed-forward network (Attention.pdf, p. 3).
+Decoder: Also composed of a stack of 6 identical layers, with an additional sub-layer that performs multi-head attention over the output of the encoder stack, alongside masking to prevent positions from attending to subsequent positions (Attention.pdf, p. 3, 7).
+Attention Mechanisms: Utilizes scaled dot-product attention and multi-head attention, allowing the model to jointly attend to information from different representation subspaces at different positions (Attention.pdf, p. 4–5).","3 10 1 2 8","yes","yes","","3.7","correct","Right answer; page 1 now retrieved (missed in the last run)"
+"gemini-3.5-flash-lite (hybrid)","2","numeric","What BLEU score does the Transformer achieve on the WMT 2014 English-to-German task?","28.4 BLEU (Transformer big), improving over the previous best results including ensembles by over 2 BLEU.","1","The Transformer achieves a BLEU score of 28.4 (with the ""big"" model configuration) on the WMT 2014 English-to-German translation task (Attention.pdf, p. 8). The base model achieves a score of 27.3 (Attention.pdf, p. 8).","8 1 7 10","yes","yes","","2.6","correct",""
+"gemini-3.5-flash-lite (hybrid)","4","numeric","How long was the big model trained and on what hardware?","300,000 steps, about 3.5 days, on one machine with 8 NVIDIA P100 GPUs.","7","The big model was trained for 3.5 days (300,000 steps) on a single machine equipped with 8 NVIDIA P100 GPUs (Attention.pdf, p. 7).","7 8 2","yes","yes","","3.4","correct",""
+"gemini-3.5-flash-lite (hybrid)","5","factual","At which conference was the paper presented?","The 31st Conference on Neural Information Processing Systems (NIPS 2017), Long Beach, CA, USA.","1","The paper was presented at the 31st Conference on Neural Information Processing Systems (NIPS 2017) in Long Beach, CA, USA (Attention.pdf, p. 1). 🐝","12 1 11 8 9","yes","yes","","6.6","correct",""
+"gemini-3.5-flash-lite (hybrid)","8","numeric","What is the value of d_model in the Transformer?","512.","3","In the base Transformer model, the dimensionality of the inputs, outputs, and sub-layer representations is $d_{\text{model}} = 512$ (Attention.pdf, p. 5).
+
+For the larger Transformer variant (the ""big"" model), $d_{\text{model}}$ is increased to 1024 (Attention.pdf, p. 9).","5 9 6 3 4","yes","yes","","3.1","correct","Right value; cites p. 5 instead of p. 3, which states the same value"
+"gemini-3.5-flash-lite (hybrid)","9","factual","What sub-layers does each encoder layer have?","Two sub-layers: a multi-head self-attention mechanism and a simple position-wise fully connected feed-forward network, each wrapped in a residual connection followed by layer normalization.","3","Each encoder layer has two sub-layers (Attention.pdf, p. 3):
+
+A multi-head self-attention mechanism (Attention.pdf, p. 3)
+A simple, position-wise fully connected feed-forward network (Attention.pdf, p. 3)
+
+Each sub-layer also uses a residual connection followed by layer normalization (Attention.pdf, p. 3).","3 5 6 8","yes","yes","","2.9","correct",""
+"gemini-3.5-flash-lite (hybrid)","12","factual","What is the formula for scaled dot-product attention?","Attention(Q, K, V) = softmax(QK^T / sqrt(d_k)) V.","4","The formula for scaled dot-product attention is:
+
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
+
+Where:
+
+$Q$ is the matrix of queries.
+$K$ is the matrix of keys.
+$V$ is the matrix of values.
+$d_k$ is the dimension of the keys (used as a scaling factor to prevent the softmax function from entering regions with extremely small gradients for large values of $d_k$) (Attention.pdf, p. 4). 🐝","4 9 1 5","yes","yes","","2.9","correct",""
+"gemini-3.5-flash-lite (hybrid)","13","reasoning","Why are the dot products scaled by 1/sqrt(d_k)?","For large d_k the dot products grow large in magnitude, pushing the softmax into regions with extremely small gradients; scaling counteracts this.","4","The dot products are scaled by $\frac{1}{\sqrt{d_k}}$ to prevent the softmax function from entering regions with extremely small gradients.
+
+Here is why this happens:
+
+Growth in Magnitude: If the components of the query ($q$) and key ($k$) are independent random variables with a mean of $0$ and a variance of $1$, their dot product has a mean of $0$ and a variance of $d_k$ (Attention.pdf, p. 4).
+Vanishing Gradients: For larger values of $d_k$, these dot products grow large in magnitude. This pushes the softmax function into regions where its gradients become extremely small, slowing down or halting effective training (Attention.pdf, p. 4).
+
+Dividing by $\sqrt{d_k}$ counteracts this growth and stabilizes the gradients (Attention.pdf, p. 4).","4 5 9 1","yes","yes","","23.6","correct",""
+"gemini-3.5-flash-lite (hybrid)","14","numeric","How many attention heads does the base model use and what are d_k and d_v?","h = 8 heads, with d_k = d_v = d_model/h = 64.","5","The base model uses 8 parallel attention heads ($h = 8$) (Attention.pdf, p. 5).
+
+For each head, the key and value dimensions are:
+
+$d_k = 64$ (Attention.pdf, p. 5)
+$d_v = 64$ (Attention.pdf, p. 5)","5 4 9 2","yes","yes","","16.6","correct",""
+"gemini-3.5-flash-lite (hybrid)","15","factual","What are the three ways multi-head attention is used in the Transformer?","Encoder-decoder attention (queries from the previous decoder layer, keys and values from the encoder output), encoder self-attention, and decoder self-attention (masked to prevent leftward information flow).","5","The Transformer uses multi-head attention in three different ways (Attention.pdf, p. 5):
+
+Encoder-decoder attention layers: The queries come from the previous decoder layer, while the keys and values come from the output of the encoder. This allows every position in the decoder to attend to all positions in the input sequence.
+Encoder self-attention layers: All of the keys, values, and queries come from the same place—specifically, the output of the previous layer in the encoder. This allows each position in the encoder to attend to all positions in the previous encoder layer.
+Decoder self-attention layers: Similar to the encoder, the keys, values, and queries come from the previous layer in the decoder, but they are restricted so that each position can only attend to positions up to and including that position (using masking to preserve the auto-regressive property).","5 1 4 2 10 3","yes","yes","","20.6","correct",""
+"gemini-3.5-flash-lite (hybrid)","16","numeric","What is the inner-layer dimensionality d_ff of the feed-forward network?","2048 (input and output dimensionality is d_model = 512).","5","The inner-layer dimensionality of the feed-forward network is $d_{ff} = 2048$ (Attention.pdf, p. 5).","5 3 7 6","yes","yes","","4.4","correct",""
+"gemini-3.5-flash-lite (hybrid)","19","reasoning","Why did the authors choose sinusoidal positional encodings over learned ones?","Results were nearly identical, and the sinusoidal version may allow the model to extrapolate to sequence lengths longer than those seen during training.","6","The authors chose the sinusoidal version because they hypothesized it might allow the model to extrapolate to sequence lengths longer than the ones encountered during training (Attention.pdf, p. 6).
+
+While they found that learned positional embeddings produced nearly identical results to the sinusoidal version during evaluation, the fixed sinusoidal encoding offers this potential advantage for length extrapolation (Attention.pdf, p. 6).","6 9 5","yes","yes","","9.9","correct",""
+"gemini-3.5-flash-lite (hybrid)","20","table","According to Table 1, what are the per-layer complexity and number of sequential operations for self-attention?","Complexity per layer O(n^2 * d) and O(1) sequential operations.","6","According to Table 1, for standard self-attention:
+
+Per-layer complexity: $O(n^2 \cdot d)$ (where $n$ is the sequence length and $d$ is the representation dimension) 📊
+Number of sequential operations: $O(1)$
+
+(Attention.pdf, p. 6)","6 7 2 1","yes","yes","","10.2","correct",""
+"gemini-3.5-flash-lite (hybrid)","22","reasoning","Under what condition is a self-attention layer faster than a recurrent layer?","When the sequence length n is smaller than the representation dimensionality d.","6","A self-attention layer is faster than a recurrent layer when the sequence length ($n$) is smaller than the representation dimensionality ($d$) (Attention.pdf, p. 7).
+
+In terms of per-layer computational complexity:
+
+Self-attention is $O(n^2 \cdot d)$ (Attention.pdf, p. 6).
+Recurrent layers are $O(n \cdot d^2)$ (Attention.pdf, p. 6).
+
+Because state-of-the-art models for tasks like machine translation typically use representation dimensions ($d$) larger than typical sequence lengths ($n$), self-attention runs faster per layer (Attention.pdf, p. 7).
+
+Additionally, self-attention requires fewer sequential operations ($O(1)$ versus $O(n)$ for recurrence), allowing for much greater parallelization (Attention.pdf, p. 6).","7 6 10 1","yes","yes","","9.4","correct","Right condition; cites p. 7 where the paper repeats it"
+"gemini-3.5-flash-lite (hybrid)","26","numeric","What optimizer and hyperparameters were used?","Adam with beta1 = 0.9, beta2 = 0.98, epsilon = 10^-9, and warmup_steps = 4000 with a learning rate that rises linearly then decays proportionally to the inverse square root of the step number.","7","According to the paper, the optimizer and training hyperparameters used are:
+
+Optimizer
+Algorithm: Adam optimizer with $\beta_1 = 0.9$, $\beta_2 = 0.98$, and $\epsilon = 10^{-9}$ (Attention.pdf, p. 7).
+Learning Rate Schedule
+Formula: The learning rate was varied over the course of training using a custom schedule: $$\text{lrate} = d_{\text{model}}^{-0.5} \cdot \min\left(\text{step_num}^{-0.5}, \text{step_num} \cdot \text{warmup_steps}^{-1.5}\right)$$
+Warmup Steps: $\text{warmup_steps} = 4,000$ (increasing linearly for the first 4,000 steps, then decreasing proportionally to the inverse square root of the step number) (Attention.pdf, p. 7).
+Regularization
+Residual Dropout: $P_{\text{drop}} = 0.1$ applied to sub-layer outputs, sub-layer inputs before addition/normalization, and the sums of embeddings and positional encodings (Attention.pdf, pp. 7–8).
+Label Smoothing: $\epsilon_{ls} = 0.1$ during training (Attention.pdf, p. 8).","7 5 11 6 9 8 4","yes","yes","","4.1","correct",""
+"gemini-3.5-flash-lite (hybrid)","28","table","What are the BLEU score and training cost of the Transformer base model on English-to-German in Table 2?","27.3 BLEU with a training cost of 3.3 x 10^18 FLOPs.","8","Based on Table 2, the metrics for the Transformer base model on the English-to-German (EN-DE) task are:
+
+BLEU score: 27.3 (Attention.pdf, p. 8)
+Training Cost (FLOPs): $3.3 \cdot 10^{18}$ (Attention.pdf, p. 8)","8 1 9","yes","yes","","2.6","correct",""
+"gemini-3.5-flash-lite (hybrid)","30","multi-hop","How much less training compute does Transformer (big) use for English-to-German than the ConvS2S Ensemble, and how do their BLEU scores compare?","About 3.3 times less: 2.3 x 10^19 vs 7.7 x 10^19 FLOPs, with Transformer (big) scoring 28.4 BLEU vs 26.36.","8","For the English-to-German translation task, the Transformer (big) uses considerably less training compute and achieves a higher BLEU score than the ConvS2S Ensemble:
+
+Training Compute: The Transformer (big) uses $2.3 \times 10^{19}$ FLOPs, while the ConvS2S Ensemble uses $7.7 \times 10^{19}$ FLOPs (Attention.pdf, p. 8). This means the Transformer (big) requires less than one-third ($30%$) of the training compute of the ConvS2S Ensemble.
+BLEU Scores: The Transformer (big) achieves a higher BLEU score of 28.4, compared to 26.36 for the ConvS2S Ensemble (Attention.pdf, p. 8).","8 1 2","yes","yes","","10.4","correct",""
+"gemini-3.5-flash-lite (hybrid)","34","table","In Table 3, what are the parameter count, dev perplexity, and dev BLEU of the base model?","65 million parameters, train PPL 4.92 (dev), and 25.8 BLEU (dev).","9","For the base model in Table 3, the values are:
+
+Parameter count: 65 million (65 × $10^6$) (Attention.pdf, p. 9)
+Dev perplexity: 4.92 (Attention.pdf, p. 9)
+Dev BLEU: 25.8 (Attention.pdf, p. 9)","9 8","yes","yes","","8.9","correct",""
+"gemini-3.5-flash-lite (hybrid)","43","unanswerable","What is the parameter count of GPT-3?","NOT_IN_DOCUMENT","","GPT-3 has 175 billion parameters 🐝.","","n/a","no","","1.6","incorrect","Still answered 175 billion from memory with 0 searches and no 'From general knowledge' label"
+"gemini-3.5-flash-lite (hybrid)","46","unanswerable","What peak learning rate value was reached at the end of warmup?","NOT_IN_DOCUMENT","","At the end of the 4,000-step warmup period, the peak learning rate reaches:
+
+$$\text{lrate} = d_{\text{model}}^{-0.5} \cdot \text{step_num} \cdot \text{warmup_steps}^{-1.5}$$
+
+Substituting $d_{\text{model}} = 512$, $\text{step_num} = 4000$, and $\text{warmup_steps} = 4000$ (Attention.pdf, p. 5, 7):
+
+$$\text{lrate} = 512^{-0.5} \cdot 4000 \cdot 4000^{-1.5} \approx 0.0004419$$
+
+(Alternatively expressed as $\frac{1}{\sqrt{512 \cdot 4000}} \approx 0.0004419$)","7 5 6 11 8 9 4 2","n/a","yes","","7.4","incorrect","Not in the paper. Model computed a peak rate of about 4.4e-4, a wrong calculation (should be about 7e-4), and did not say it was not stated"

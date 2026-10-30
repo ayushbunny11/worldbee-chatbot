@@ -1,0 +1,407 @@
+[
+  {
+    "id": 1,
+    "type": "factual",
+    "question": "What model architecture do the authors propose?",
+    "truth": "The Transformer, a network architecture based solely on attention mechanisms that dispenses with recurrence and convolutions entirely.",
+    "truth_page": "1",
+    "seconds": 3.7,
+    "answer": "The authors propose the Transformer, a novel sequence transduction model architecture based entirely on attention mechanisms, dispensing with recurrence and convolutions entirely (Attention.pdf, p. 1).\n\nKey features of the architecture include:\n\nEncoder-Decoder Structure: It uses stacked self-attention and point-wise, fully connected layers for both the encoder and decoder (Attention.pdf, p. 3).\nEncoder: Composed of a stack of 6 identical layers, each featuring a multi-head self-attention mechanism followed by a position-wise fully connected feed-forward network (Attention.pdf, p. 3).\nDecoder: Also composed of a stack of 6 identical layers, with an additional sub-layer that performs multi-head attention over the output of the encoder stack, alongside masking to prevent positions from attending to subsequent positions (Attention.pdf, p. 3, 7).\nAttention Mechanisms: Utilizes scaled dot-product attention and multi-head attention, allowing the model to jointly attend to information from different representation subspaces at different positions (Attention.pdf, p. 4–5).",
+    "error": "",
+    "steps": [
+      "Searched your files for “model architecture propose encoder decoder transformer”"
+    ],
+    "sources": [
+      "Attention.pdf p. 3",
+      "Attention.pdf p. 10",
+      "Attention.pdf p. 1",
+      "Attention.pdf p. 2",
+      "Attention.pdf p. 8"
+    ]
+  },
+  {
+    "id": 2,
+    "type": "numeric",
+    "question": "What BLEU score does the Transformer achieve on the WMT 2014 English-to-German task?",
+    "truth": "28.4 BLEU (Transformer big), improving over the previous best results including ensembles by over 2 BLEU.",
+    "truth_page": "1",
+    "seconds": 2.6,
+    "answer": "The Transformer achieves a BLEU score of 28.4 (with the \"big\" model configuration) on the WMT 2014 English-to-German translation task (Attention.pdf, p. 8). The base model achieves a score of 27.3 (Attention.pdf, p. 8).",
+    "error": "",
+    "steps": [
+      "Searched your files for “WMT 2014 English-to-German BLEU score Transformer”"
+    ],
+    "sources": [
+      "Attention.pdf p. 8",
+      "Attention.pdf p. 1",
+      "Attention.pdf p. 7",
+      "Attention.pdf p. 10"
+    ]
+  },
+  {
+    "id": 4,
+    "type": "numeric",
+    "question": "How long was the big model trained and on what hardware?",
+    "truth": "300,000 steps, about 3.5 days, on one machine with 8 NVIDIA P100 GPUs.",
+    "truth_page": "7",
+    "seconds": 3.4,
+    "answer": "The big model was trained for 3.5 days (300,000 steps) on a single machine equipped with 8 NVIDIA P100 GPUs (Attention.pdf, p. 7).",
+    "error": "",
+    "steps": [
+      "Searched your files for “big model training time hardware days GPU TPU”"
+    ],
+    "sources": [
+      "Attention.pdf p. 7",
+      "Attention.pdf p. 8",
+      "Attention.pdf p. 2"
+    ]
+  },
+  {
+    "id": 5,
+    "type": "factual",
+    "question": "At which conference was the paper presented?",
+    "truth": "The 31st Conference on Neural Information Processing Systems (NIPS 2017), Long Beach, CA, USA.",
+    "truth_page": "1",
+    "seconds": 6.6,
+    "answer": "The paper was presented at the 31st Conference on Neural Information Processing Systems (NIPS 2017) in Long Beach, CA, USA (Attention.pdf, p. 1). 🐝",
+    "error": "",
+    "steps": [
+      "Searched your files for “conference presented published venue”"
+    ],
+    "sources": [
+      "Attention.pdf p. 12",
+      "Attention.pdf p. 1",
+      "Attention.pdf p. 11",
+      "Attention.pdf p. 8",
+      "Attention.pdf p. 9"
+    ]
+  },
+  {
+    "id": 8,
+    "type": "numeric",
+    "question": "What is the value of d_model in the Transformer?",
+    "truth": "512.",
+    "truth_page": "3",
+    "seconds": 3.1,
+    "answer": "In the base Transformer model, the dimensionality of the inputs, outputs, and sub-layer representations is $d_{\\text{model}} = 512$ (Attention.pdf, p. 5).\n\nFor the larger Transformer variant (the \"big\" model), $d_{\\text{model}}$ is increased to 1024 (Attention.pdf, p. 9).",
+    "error": "",
+    "steps": [
+      "Searched your files for “d_model”"
+    ],
+    "sources": [
+      "Attention.pdf p. 5",
+      "Attention.pdf p. 9",
+      "Attention.pdf p. 6",
+      "Attention.pdf p. 3",
+      "Attention.pdf p. 4"
+    ]
+  },
+  {
+    "id": 9,
+    "type": "factual",
+    "question": "What sub-layers does each encoder layer have?",
+    "truth": "Two sub-layers: a multi-head self-attention mechanism and a simple position-wise fully connected feed-forward network, each wrapped in a residual connection followed by layer normalization.",
+    "truth_page": "3",
+    "seconds": 2.9,
+    "answer": "Each encoder layer has two sub-layers (Attention.pdf, p. 3):\n\nA multi-head self-attention mechanism (Attention.pdf, p. 3)\nA simple, position-wise fully connected feed-forward network (Attention.pdf, p. 3)\n\nEach sub-layer also uses a residual connection followed by layer normalization (Attention.pdf, p. 3).",
+    "error": "",
+    "steps": [
+      "Searched your files for “encoder layer sub-layers”"
+    ],
+    "sources": [
+      "Attention.pdf p. 3",
+      "Attention.pdf p. 5",
+      "Attention.pdf p. 6",
+      "Attention.pdf p. 8"
+    ]
+  },
+  {
+    "id": 12,
+    "type": "factual",
+    "question": "What is the formula for scaled dot-product attention?",
+    "truth": "Attention(Q, K, V) = softmax(QK^T / sqrt(d_k)) V.",
+    "truth_page": "4",
+    "seconds": 2.9,
+    "answer": "The formula for scaled dot-product attention is:\n\n$$\\text{Attention}(Q, K, V) = \\text{softmax}\\left(\\frac{QK^T}{\\sqrt{d_k}}\\right)V$$\n\nWhere:\n\n$Q$ is the matrix of queries.\n$K$ is the matrix of keys.\n$V$ is the matrix of values.\n$d_k$ is the dimension of the keys (used as a scaling factor to prevent the softmax function from entering regions with extremely small gradients for large values of $d_k$) (Attention.pdf, p. 4). 🐝",
+    "error": "",
+    "steps": [
+      "Searched your files for “scaled dot-product attention formula”"
+    ],
+    "sources": [
+      "Attention.pdf p. 4",
+      "Attention.pdf p. 9",
+      "Attention.pdf p. 1",
+      "Attention.pdf p. 5"
+    ]
+  },
+  {
+    "id": 13,
+    "type": "reasoning",
+    "question": "Why are the dot products scaled by 1/sqrt(d_k)?",
+    "truth": "For large d_k the dot products grow large in magnitude, pushing the softmax into regions with extremely small gradients; scaling counteracts this.",
+    "truth_page": "4",
+    "seconds": 23.6,
+    "answer": "The dot products are scaled by $\\frac{1}{\\sqrt{d_k}}$ to prevent the softmax function from entering regions with extremely small gradients.\n\nHere is why this happens:\n\nGrowth in Magnitude: If the components of the query ($q$) and key ($k$) are independent random variables with a mean of $0$ and a variance of $1$, their dot product has a mean of $0$ and a variance of $d_k$ (Attention.pdf, p. 4).\nVanishing Gradients: For larger values of $d_k$, these dot products grow large in magnitude. This pushes the softmax function into regions where its gradients become extremely small, slowing down or halting effective training (Attention.pdf, p. 4).\n\nDividing by $\\sqrt{d_k}$ counteracts this growth and stabilizes the gradients (Attention.pdf, p. 4).",
+    "error": "",
+    "steps": [
+      "Searched your files for “scaled dot product sqrt d_k”"
+    ],
+    "sources": [
+      "Attention.pdf p. 4",
+      "Attention.pdf p. 5",
+      "Attention.pdf p. 9",
+      "Attention.pdf p. 1"
+    ]
+  },
+  {
+    "id": 14,
+    "type": "numeric",
+    "question": "How many attention heads does the base model use and what are d_k and d_v?",
+    "truth": "h = 8 heads, with d_k = d_v = d_model/h = 64.",
+    "truth_page": "5",
+    "seconds": 16.6,
+    "answer": "The base model uses 8 parallel attention heads ($h = 8$) (Attention.pdf, p. 5).\n\nFor each head, the key and value dimensions are:\n\n$d_k = 64$ (Attention.pdf, p. 5)\n$d_v = 64$ (Attention.pdf, p. 5)",
+    "error": "",
+    "steps": [
+      "Searched your files for “attention heads d_k d_v base model”"
+    ],
+    "sources": [
+      "Attention.pdf p. 5",
+      "Attention.pdf p. 4",
+      "Attention.pdf p. 9",
+      "Attention.pdf p. 2"
+    ]
+  },
+  {
+    "id": 15,
+    "type": "factual",
+    "question": "What are the three ways multi-head attention is used in the Transformer?",
+    "truth": "Encoder-decoder attention (queries from the previous decoder layer, keys and values from the encoder output), encoder self-attention, and decoder self-attention (masked to prevent leftward information flow).",
+    "truth_page": "5",
+    "seconds": 20.6,
+    "answer": "The Transformer uses multi-head attention in three different ways (Attention.pdf, p. 5):\n\nEncoder-decoder attention layers: The queries come from the previous decoder layer, while the keys and values come from the output of the encoder. This allows every position in the decoder to attend to all positions in the input sequence.\nEncoder self-attention layers: All of the keys, values, and queries come from the same place—specifically, the output of the previous layer in the encoder. This allows each position in the encoder to attend to all positions in the previous encoder layer.\nDecoder self-attention layers: Similar to the encoder, the keys, values, and queries come from the previous layer in the decoder, but they are restricted so that each position can only attend to positions up to and including that position (using masking to preserve the auto-regressive property).",
+    "error": "",
+    "steps": [
+      "Searched your files for “three ways multi-head attention is used Transformer”",
+      "Searched your files for “encoder-decoder attention queries come from previous decoder layer”"
+    ],
+    "sources": [
+      "Attention.pdf p. 5",
+      "Attention.pdf p. 1",
+      "Attention.pdf p. 4",
+      "Attention.pdf p. 2",
+      "Attention.pdf p. 10",
+      "Attention.pdf p. 5",
+      "Attention.pdf p. 3",
+      "Attention.pdf p. 1",
+      "Attention.pdf p. 4"
+    ]
+  },
+  {
+    "id": 16,
+    "type": "numeric",
+    "question": "What is the inner-layer dimensionality d_ff of the feed-forward network?",
+    "truth": "2048 (input and output dimensionality is d_model = 512).",
+    "truth_page": "5",
+    "seconds": 4.4,
+    "answer": "The inner-layer dimensionality of the feed-forward network is $d_{ff} = 2048$ (Attention.pdf, p. 5).",
+    "error": "",
+    "steps": [
+      "Searched your files for “inner layer dimensionality d_ff feed forward network”"
+    ],
+    "sources": [
+      "Attention.pdf p. 5",
+      "Attention.pdf p. 3",
+      "Attention.pdf p. 7",
+      "Attention.pdf p. 6"
+    ]
+  },
+  {
+    "id": 19,
+    "type": "reasoning",
+    "question": "Why did the authors choose sinusoidal positional encodings over learned ones?",
+    "truth": "Results were nearly identical, and the sinusoidal version may allow the model to extrapolate to sequence lengths longer than those seen during training.",
+    "truth_page": "6",
+    "seconds": 9.9,
+    "answer": "The authors chose the sinusoidal version because they hypothesized it might allow the model to extrapolate to sequence lengths longer than the ones encountered during training (Attention.pdf, p. 6).\n\nWhile they found that learned positional embeddings produced nearly identical results to the sinusoidal version during evaluation, the fixed sinusoidal encoding offers this potential advantage for length extrapolation (Attention.pdf, p. 6).",
+    "error": "",
+    "steps": [
+      "Searched your files for “sinusoidal positional encodings learned positional embeddings comparison why”"
+    ],
+    "sources": [
+      "Attention.pdf p. 6",
+      "Attention.pdf p. 9",
+      "Attention.pdf p. 5"
+    ]
+  },
+  {
+    "id": 20,
+    "type": "table",
+    "question": "According to Table 1, what are the per-layer complexity and number of sequential operations for self-attention?",
+    "truth": "Complexity per layer O(n^2 * d) and O(1) sequential operations.",
+    "truth_page": "6",
+    "seconds": 10.2,
+    "answer": "According to Table 1, for standard self-attention:\n\nPer-layer complexity: $O(n^2 \\cdot d)$ (where $n$ is the sequence length and $d$ is the representation dimension) 📊\nNumber of sequential operations: $O(1)$\n\n(Attention.pdf, p. 6)",
+    "error": "",
+    "steps": [
+      "Searched your files for “Table 1 per-layer complexity sequential operations self-attention”"
+    ],
+    "sources": [
+      "Attention.pdf p. 6",
+      "Attention.pdf p. 7",
+      "Attention.pdf p. 2",
+      "Attention.pdf p. 1"
+    ]
+  },
+  {
+    "id": 22,
+    "type": "reasoning",
+    "question": "Under what condition is a self-attention layer faster than a recurrent layer?",
+    "truth": "When the sequence length n is smaller than the representation dimensionality d.",
+    "truth_page": "6",
+    "seconds": 9.4,
+    "answer": "A self-attention layer is faster than a recurrent layer when the sequence length ($n$) is smaller than the representation dimensionality ($d$) (Attention.pdf, p. 7).\n\nIn terms of per-layer computational complexity:\n\nSelf-attention is $O(n^2 \\cdot d)$ (Attention.pdf, p. 6).\nRecurrent layers are $O(n \\cdot d^2)$ (Attention.pdf, p. 6).\n\nBecause state-of-the-art models for tasks like machine translation typically use representation dimensions ($d$) larger than typical sequence lengths ($n$), self-attention runs faster per layer (Attention.pdf, p. 7).\n\nAdditionally, self-attention requires fewer sequential operations ($O(1)$ versus $O(n)$ for recurrence), allowing for much greater parallelization (Attention.pdf, p. 6).",
+    "error": "",
+    "steps": [
+      "Searched your files for “faster than recurrent layer self-attention condition”",
+      "Searched your files for “computational complexity per layer self-attention recurrent faster sequence length n d”"
+    ],
+    "sources": [
+      "Attention.pdf p. 7",
+      "Attention.pdf p. 6",
+      "Attention.pdf p. 10",
+      "Attention.pdf p. 1",
+      "Attention.pdf p. 6",
+      "Attention.pdf p. 7",
+      "Attention.pdf p. 1"
+    ]
+  },
+  {
+    "id": 26,
+    "type": "numeric",
+    "question": "What optimizer and hyperparameters were used?",
+    "truth": "Adam with beta1 = 0.9, beta2 = 0.98, epsilon = 10^-9, and warmup_steps = 4000 with a learning rate that rises linearly then decays proportionally to the inverse square root of the step number.",
+    "truth_page": "7",
+    "seconds": 4.1,
+    "answer": "According to the paper, the optimizer and training hyperparameters used are:\n\nOptimizer\nAlgorithm: Adam optimizer with $\\beta_1 = 0.9$, $\\beta_2 = 0.98$, and $\\epsilon = 10^{-9}$ (Attention.pdf, p. 7).\nLearning Rate Schedule\nFormula: The learning rate was varied over the course of training using a custom schedule: $$\\text{lrate} = d_{\\text{model}}^{-0.5} \\cdot \\min\\left(\\text{step_num}^{-0.5}, \\text{step_num} \\cdot \\text{warmup_steps}^{-1.5}\\right)$$\nWarmup Steps: $\\text{warmup_steps} = 4,000$ (increasing linearly for the first 4,000 steps, then decreasing proportionally to the inverse square root of the step number) (Attention.pdf, p. 7).\nRegularization\nResidual Dropout: $P_{\\text{drop}} = 0.1$ applied to sub-layer outputs, sub-layer inputs before addition/normalization, and the sums of embeddings and positional encodings (Attention.pdf, pp. 7–8).\nLabel Smoothing: $\\epsilon_{ls} = 0.1$ during training (Attention.pdf, p. 8).",
+    "error": "",
+    "steps": [
+      "Searched your files for “optimizer hyperparameters learning rate adam”",
+      "Searched your files for “warmup_steps dropout label smoothing optimizer hyperparameters”"
+    ],
+    "sources": [
+      "Attention.pdf p. 7",
+      "Attention.pdf p. 5",
+      "Attention.pdf p. 11",
+      "Attention.pdf p. 6",
+      "Attention.pdf p. 9",
+      "Attention.pdf p. 8",
+      "Attention.pdf p. 7",
+      "Attention.pdf p. 8",
+      "Attention.pdf p. 9",
+      "Attention.pdf p. 4"
+    ]
+  },
+  {
+    "id": 28,
+    "type": "table",
+    "question": "What are the BLEU score and training cost of the Transformer base model on English-to-German in Table 2?",
+    "truth": "27.3 BLEU with a training cost of 3.3 x 10^18 FLOPs.",
+    "truth_page": "8",
+    "seconds": 2.6,
+    "answer": "Based on Table 2, the metrics for the Transformer base model on the English-to-German (EN-DE) task are:\n\nBLEU score: 27.3 (Attention.pdf, p. 8)\nTraining Cost (FLOPs): $3.3 \\cdot 10^{18}$ (Attention.pdf, p. 8)",
+    "error": "",
+    "steps": [
+      "Searched your files for “Table 2 BLEU score training cost Transformer base English-to-German”"
+    ],
+    "sources": [
+      "Attention.pdf p. 8",
+      "Attention.pdf p. 1",
+      "Attention.pdf p. 9"
+    ]
+  },
+  {
+    "id": 30,
+    "type": "multi-hop",
+    "question": "How much less training compute does Transformer (big) use for English-to-German than the ConvS2S Ensemble, and how do their BLEU scores compare?",
+    "truth": "About 3.3 times less: 2.3 x 10^19 vs 7.7 x 10^19 FLOPs, with Transformer (big) scoring 28.4 BLEU vs 26.36.",
+    "truth_page": "8",
+    "seconds": 10.4,
+    "answer": "For the English-to-German translation task, the Transformer (big) uses considerably less training compute and achieves a higher BLEU score than the ConvS2S Ensemble:\n\nTraining Compute: The Transformer (big) uses $2.3 \\times 10^{19}$ FLOPs, while the ConvS2S Ensemble uses $7.7 \\times 10^{19}$ FLOPs (Attention.pdf, p. 8). This means the Transformer (big) requires less than one-third ($30%$) of the training compute of the ConvS2S Ensemble.\nBLEU Scores: The Transformer (big) achieves a higher BLEU score of 28.4, compared to 26.36 for the ConvS2S Ensemble (Attention.pdf, p. 8).",
+    "error": "",
+    "steps": [
+      "Searched your files for “Transformer big ConvS2S English-to-German training compute BLEU”"
+    ],
+    "sources": [
+      "Attention.pdf p. 8",
+      "Attention.pdf p. 1",
+      "Attention.pdf p. 2"
+    ]
+  },
+  {
+    "id": 34,
+    "type": "table",
+    "question": "In Table 3, what are the parameter count, dev perplexity, and dev BLEU of the base model?",
+    "truth": "65 million parameters, train PPL 4.92 (dev), and 25.8 BLEU (dev).",
+    "truth_page": "9",
+    "seconds": 8.9,
+    "answer": "For the base model in Table 3, the values are:\n\nParameter count: 65 million (65 × $10^6$) (Attention.pdf, p. 9)\nDev perplexity: 4.92 (Attention.pdf, p. 9)\nDev BLEU: 25.8 (Attention.pdf, p. 9)",
+    "error": "",
+    "steps": [
+      "Searched your files for “Table 3 parameter count dev perplexity dev BLEU base model”"
+    ],
+    "sources": [
+      "Attention.pdf p. 9",
+      "Attention.pdf p. 8"
+    ]
+  },
+  {
+    "id": 43,
+    "type": "unanswerable",
+    "question": "What is the parameter count of GPT-3?",
+    "truth": "NOT_IN_DOCUMENT",
+    "truth_page": "",
+    "seconds": 1.6,
+    "answer": "GPT-3 has 175 billion parameters 🐝.",
+    "error": "",
+    "steps": [],
+    "sources": []
+  },
+  {
+    "id": 46,
+    "type": "unanswerable",
+    "question": "What peak learning rate value was reached at the end of warmup?",
+    "truth": "NOT_IN_DOCUMENT",
+    "truth_page": "",
+    "seconds": 7.4,
+    "answer": "At the end of the 4,000-step warmup period, the peak learning rate reaches:\n\n$$\\text{lrate} = d_{\\text{model}}^{-0.5} \\cdot \\text{step_num} \\cdot \\text{warmup_steps}^{-1.5}$$\n\nSubstituting $d_{\\text{model}} = 512$, $\\text{step_num} = 4000$, and $\\text{warmup_steps} = 4000$ (Attention.pdf, p. 5, 7):\n\n$$\\text{lrate} = 512^{-0.5} \\cdot 4000 \\cdot 4000^{-1.5} \\approx 0.0004419$$\n\n(Alternatively expressed as $\\frac{1}{\\sqrt{512 \\cdot 4000}} \\approx 0.0004419$)",
+    "error": "",
+    "steps": [
+      "Searched your files for “peak learning rate warmup”",
+      "Searched your files for “learning rate warmup_steps 4000”",
+      "Searched your files for “lrate formula warmup_steps”",
+      "Searched your files for “d_model warmup_steps learning rate value”"
+    ],
+    "sources": [
+      "Attention.pdf p. 7",
+      "Attention.pdf p. 5",
+      "Attention.pdf p. 6",
+      "Attention.pdf p. 11",
+      "Attention.pdf p. 8",
+      "Attention.pdf p. 7",
+      "Attention.pdf p. 9",
+      "Attention.pdf p. 8",
+      "Attention.pdf p. 6",
+      "Attention.pdf p. 5",
+      "Attention.pdf p. 7",
+      "Attention.pdf p. 11",
+      "Attention.pdf p. 8",
+      "Attention.pdf p. 4",
+      "Attention.pdf p. 2",
+      "Attention.pdf p. 7",
+      "Attention.pdf p. 5",
+      "Attention.pdf p. 8",
+      "Attention.pdf p. 4"
+    ]
+  }
+]

@@ -13,3 +13,8 @@ dist/
 .idea/
 .DS_Store
 Thumbs.db
+
+# WorldBee data (vector index, document list, embedding model)
+backend/data/
+qa/.venv-ui/
+__pycache__/

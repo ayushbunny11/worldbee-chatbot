@@ -14,7 +14,7 @@ export default function EmptyState({ ready, onPick, onConfigure }) {
       <h2>How can I help you today?</h2>
       <p>
         Ask anything. When a question needs fresh information, I'll search the web and
-        cite my sources.
+        cite my sources. Attach a PDF, Word or text file and I'll answer from it, too.
       </p>
 
       {ready ? (
